@@ -19,21 +19,22 @@ class HomeView extends StatelessWidget {
         title: const Text(
           'Book Library',
           style: TextStyle(
-            fontWeight: FontWeight.w800,
-            fontSize: 28,
-            letterSpacing: -0.5,
+            fontWeight: FontWeight.w700,
+            fontSize: 24,
+            color: Color(0xFF1A1A1A),
+            letterSpacing: -0.3,
           ),
         ),
       ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
             colors: [
-              Color(0xFF667EEA),
-              Color(0xFF764BA2),
-              Color(0xFFF093FB),
+              Color(0xFFF0F7FF),
+              Color(0xFFE8F4F8),
+              Color(0xFFF5FAFC),
             ],
             stops: [0.0, 0.5, 1.0],
           ),
@@ -88,17 +89,18 @@ class HomeView extends StatelessWidget {
                           children: [
                             Text(
                               controller.errorMessage.value,
-                              style: const TextStyle(
-                                color: Colors.white,
+                              style: TextStyle(
+                                color: Colors.grey.shade700,
                                 fontSize: 16,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                             const SizedBox(height: 16),
                             ElevatedButton(
                               onPressed: controller.fetchAlreadyReadBooks,
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white.withOpacity(0.9),
-                                foregroundColor: Colors.black87,
+                                backgroundColor: const Color(0xFF4A90E2),
+                                foregroundColor: Colors.white,
                                 padding: const EdgeInsets.symmetric(
                                   horizontal: 24,
                                   vertical: 12,
@@ -106,6 +108,7 @@ class HomeView extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12),
                                 ),
+                                elevation: 2,
                               ),
                               child: const Text('Retry'),
                             ),
@@ -115,12 +118,13 @@ class HomeView extends StatelessWidget {
                     }
 
                     if (controller.books.isEmpty) {
-                      return const Center(
+                      return Center(
                         child: Text(
                           'No books found.',
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.grey.shade600,
                             fontSize: 16,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       );

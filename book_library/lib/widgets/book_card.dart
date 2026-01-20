@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
@@ -7,11 +5,7 @@ import 'package:shimmer/shimmer.dart';
 import '../models/book.dart';
 
 class BookCard extends StatelessWidget {
-  const BookCard({
-    super.key,
-    required this.book,
-    required this.onToggleStatus,
-  });
+  const BookCard({super.key, required this.book, required this.onToggleStatus});
 
   final Book book;
   final VoidCallback onToggleStatus;
@@ -21,26 +15,23 @@ class BookCard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 6),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.25),
-        borderRadius: BorderRadius.circular(18),
+        color: Colors.white.withOpacity(0.9),
+        borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: Colors.white.withOpacity(0.4),
-          width: 1.5,
+          color: Colors.grey.shade200,
+          width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 15,
-            offset: const Offset(0, 5),
+            color: Colors.black.withOpacity(0.08),
+            blurRadius: 20,
+            offset: const Offset(0, 4),
+            spreadRadius: 0,
           ),
         ],
       ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(18),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-          child: Padding(
-            padding: const EdgeInsets.all(14),
+      child: Padding(
+        padding: const EdgeInsets.all(14),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -56,16 +47,19 @@ class BookCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w700,
-                          color: Colors.white,
+                          color: const Color(0xFF1A1A1A),
+                          fontSize: 16,
                         ),
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 6),
                   Text(
                     book.author,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: Colors.white.withOpacity(0.9),
+                          color: Colors.grey.shade700,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
                         ),
                   ),
                   const SizedBox(height: 4),
@@ -74,7 +68,8 @@ class BookCard extends StatelessWidget {
                         ? 'Published: ${book.publishedYear}'
                         : 'Published: N/A',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: Colors.white.withOpacity(0.7),
+                          color: Colors.grey.shade600,
+                          fontSize: 12,
                         ),
                   ),
                   const SizedBox(height: 8),
@@ -89,8 +84,6 @@ class BookCard extends StatelessWidget {
               ),
             ),
           ],
-        ),
-          ),
         ),
       ),
     );
@@ -116,9 +109,7 @@ class _BookCover extends StatelessWidget {
                 placeholder: (context, url) => Shimmer.fromColors(
                   baseColor: Colors.grey.shade300,
                   highlightColor: Colors.grey.shade100,
-                  child: Container(
-                    color: Colors.white,
-                  ),
+                  child: Container(color: Colors.white),
                 ),
                 errorWidget: (context, url, error) => Container(
                   color: Colors.grey.shade200,
@@ -145,20 +136,21 @@ class _StatusButton extends StatelessWidget {
     return TextButton(
       onPressed: onPressed,
       style: TextButton.styleFrom(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
         backgroundColor: isRead
-            ? Colors.green.shade600
-            : Colors.white.withOpacity(0.3),
-        foregroundColor: Colors.white,
+            ? const Color(0xFF10B981)
+            : Colors.transparent,
+        foregroundColor: isRead ? Colors.white : const Color(0xFF4A90E2),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(22),
+          borderRadius: BorderRadius.circular(20),
           side: BorderSide(
             color: isRead
                 ? Colors.transparent
-                : Colors.white.withOpacity(0.5),
+                : const Color(0xFF4A90E2),
             width: 1.5,
           ),
         ),
+        elevation: isRead ? 0 : 0,
       ),
       child: Text(isRead ? 'Read' : 'Unread'),
     );

@@ -34,21 +34,22 @@ class _SearchViewState extends State<SearchView> {
         title: const Text(
           'Search Books',
           style: TextStyle(
-            fontWeight: FontWeight.w800,
-            fontSize: 28,
-            letterSpacing: -0.5,
+            fontWeight: FontWeight.w700,
+            fontSize: 24,
+            color: Color(0xFF1A1A1A),
+            letterSpacing: -0.3,
           ),
         ),
       ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
             colors: [
-              Color(0xFF667EEA),
-              Color(0xFF764BA2),
-              Color(0xFFF093FB),
+              Color(0xFFF0F7FF),
+              Color(0xFFE8F4F8),
+              Color(0xFFF5FAFC),
             ],
             stops: [0.0, 0.5, 1.0],
           ),
@@ -92,36 +93,25 @@ class _SearchViewState extends State<SearchView> {
                       ),
                     ),
                     const SizedBox(width: 12),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.95),
-                        borderRadius: BorderRadius.circular(16),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            blurRadius: 20,
-                            offset: const Offset(0, 4),
-                          ),
-                        ],
-                      ),
-                      child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          onTap: _onSearch,
+                    ElevatedButton(
+                      onPressed: _onSearch,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF4A90E2),
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 24,
+                          vertical: 14,
+                        ),
+                        shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 20,
-                              vertical: 14,
-                            ),
-                            child: const Text(
-                              'Search',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
+                        ),
+                        elevation: 2,
+                      ),
+                      child: const Text(
+                        'Search',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
                         ),
                       ),
                     ),
@@ -138,21 +128,23 @@ class _SearchViewState extends State<SearchView> {
                       return Center(
                         child: Text(
                           controller.searchError.value,
-                          style: const TextStyle(
-                            color: Colors.white,
+                          style: TextStyle(
+                            color: Colors.grey.shade700,
                             fontSize: 16,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       );
                     }
 
                     if (controller.searchResults.isEmpty) {
-                      return const Center(
+                      return Center(
                         child: Text(
                           'Start searching to see results.',
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.grey.shade600,
                             fontSize: 16,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       );
