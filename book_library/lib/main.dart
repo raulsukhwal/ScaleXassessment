@@ -16,14 +16,13 @@ class BookLibraryApp extends StatelessWidget {
       title: 'Book Library',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue.shade700),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo.shade700),
         useMaterial3: true,
         scaffoldBackgroundColor: Colors.transparent,
         appBarTheme: AppBarTheme(
           centerTitle: false,
           elevation: 0,
-          backgroundColor: Colors.transparent,
-          foregroundColor: Colors.black87,
+          backgroundColor: Colors.indigo,
         ),
       ),
       home: const HomeView(),

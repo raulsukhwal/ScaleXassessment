@@ -21,130 +21,128 @@ class HomeView extends StatelessWidget {
           style: TextStyle(
             fontWeight: FontWeight.w700,
             fontSize: 24,
-            color: Color(0xFF1A1A1A),
+            color: Colors.white,
             letterSpacing: -0.3,
           ),
         ),
       ),
       body: Container(
-        decoration: const BoxDecoration(
+        decoration:  BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color(0xFFF0F7FF),
-              Color(0xFFE8F4F8),
+              Colors.indigo,
+              Colors.indigo.shade300,
               Color(0xFFF5FAFC),
             ],
             stops: [0.0, 0.5, 1.0],
           ),
         ),
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Column(
-              children: [
-                GestureDetector(
-                  onTap: () => Get.to(() => const SearchView()),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.95),
-                      borderRadius: BorderRadius.circular(16),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
-                          blurRadius: 20,
-                          offset: const Offset(0, 4),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+          child: Column(
+            children: [
+              GestureDetector(
+                onTap: () => Get.to(() => const SearchView()),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.95),
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 20,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(Icons.search, color: Colors.grey.shade700, size: 22),
+                      const SizedBox(width: 12),
+                      Text(
+                        'Search books...',
+                        style: TextStyle(
+                          color: Colors.grey.shade600,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
                         ),
-                      ],
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(Icons.search, color: Colors.grey.shade700, size: 22),
-                        const SizedBox(width: 12),
-                        Text(
-                          'Search books...',
-                          style: TextStyle(
-                            color: Colors.grey.shade600,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(height: 16),
-                Expanded(
-                  child: Obx(() {
-                    if (controller.isLoading.value) {
-                      return const BookListShimmer();
-                    }
+              ),
+              const SizedBox(height: 16),
+              Expanded(
+                child: Obx(() {
+                  if (controller.isLoading.value) {
+                    return const BookListShimmer();
+                  }
 
-                    if (controller.errorMessage.isNotEmpty) {
-                      return Center(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              controller.errorMessage.value,
-                              style: TextStyle(
-                                color: Colors.grey.shade700,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
+                  if (controller.errorMessage.isNotEmpty) {
+                    return Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            controller.errorMessage.value,
+                            style: TextStyle(
+                              color: Colors.grey.shade700,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
                             ),
-                            const SizedBox(height: 16),
-                            ElevatedButton(
-                              onPressed: controller.fetchAlreadyReadBooks,
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xFF4A90E2),
-                                foregroundColor: Colors.white,
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 24,
-                                  vertical: 12,
-                                ),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                elevation: 2,
-                              ),
-                              child: const Text('Retry'),
-                            ),
-                          ],
-                        ),
-                      );
-                    }
-
-                    if (controller.books.isEmpty) {
-                      return Center(
-                        child: Text(
-                          'No books found.',
-                          style: TextStyle(
-                            color: Colors.grey.shade600,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
                           ),
-                        ),
-                      );
-                    }
-
-                    return ListView.builder(
-                      padding: const EdgeInsets.only(bottom: 12),
-                      itemCount: controller.books.length,
-                      itemBuilder: (context, index) {
-                        final book = controller.books[index];
-                        return BookCard(
-                          book: book,
-                          onToggleStatus: () => controller.toggleBookStatus(book),
-                        );
-                      },
+                          const SizedBox(height: 16),
+                          ElevatedButton(
+                            onPressed: controller.fetchAlreadyReadBooks,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFF4A90E2),
+                              foregroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 24,
+                                vertical: 12,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              elevation: 2,
+                            ),
+                            child: const Text('Retry'),
+                          ),
+                        ],
+                      ),
                     );
-                  }),
-                ),
-              ],
-            ),
+                  }
+
+                  if (controller.books.isEmpty) {
+                    return Center(
+                      child: Text(
+                        'No books found.',
+                        style: TextStyle(
+                          color: Colors.grey.shade600,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    );
+                  }
+
+                  return ListView.builder(
+                    padding: const EdgeInsets.only(bottom: 12),
+                    itemCount: controller.books.length,
+                    itemBuilder: (context, index) {
+                      final book = controller.books[index];
+                      return BookCard(
+                        book: book,
+                        onToggleStatus: () => controller.toggleBookStatus(book),
+                      );
+                    },
+                  );
+                }),
+              ),
+            ],
           ),
         ),
       ),

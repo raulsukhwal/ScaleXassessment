@@ -31,12 +31,13 @@ class _SearchViewState extends State<SearchView> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
+        foregroundColor: Colors.white,
         title: const Text(
           'Search Books',
           style: TextStyle(
             fontWeight: FontWeight.w700,
             fontSize: 24,
-            color: Color(0xFF1A1A1A),
+            color: Colors.white,
             letterSpacing: -0.3,
           ),
         ),
@@ -96,7 +97,7 @@ class _SearchViewState extends State<SearchView> {
                     ElevatedButton(
                       onPressed: _onSearch,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF4A90E2),
+                        backgroundColor: Colors.indigo.shade400,
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(
                           horizontal: 24,

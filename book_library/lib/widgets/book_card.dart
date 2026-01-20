@@ -17,10 +17,7 @@ class BookCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.9),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: Colors.grey.shade200,
-          width: 1,
-        ),
+        border: Border.all(color: Colors.grey.shade200, width: 1),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.08),
@@ -46,10 +43,10 @@ class BookCard extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.w700,
-                          color: const Color(0xFF1A1A1A),
-                          fontSize: 16,
-                        ),
+                      fontWeight: FontWeight.w700,
+                      color: const Color(0xFF1A1A1A),
+                      fontSize: 16,
+                    ),
                   ),
                   const SizedBox(height: 6),
                   Text(
@@ -57,10 +54,10 @@ class BookCard extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: Colors.grey.shade700,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
+                      color: Colors.grey.shade700,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Text(
@@ -68,9 +65,9 @@ class BookCard extends StatelessWidget {
                         ? 'Published: ${book.publishedYear}'
                         : 'Published: N/A',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: Colors.grey.shade600,
-                          fontSize: 12,
-                        ),
+                      color: Colors.grey.shade600,
+                      fontSize: 12,
+                    ),
                   ),
                   const SizedBox(height: 8),
                   Align(
@@ -137,16 +134,12 @@ class _StatusButton extends StatelessWidget {
       onPressed: onPressed,
       style: TextButton.styleFrom(
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
-        backgroundColor: isRead
-            ? const Color(0xFF10B981)
-            : Colors.transparent,
-        foregroundColor: isRead ? Colors.white : const Color(0xFF4A90E2),
+        backgroundColor: isRead ?  Colors.indigo.shade400 : Colors.transparent,
+        foregroundColor: isRead ? Colors.white : Colors.indigo.shade400,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
           side: BorderSide(
-            color: isRead
-                ? Colors.transparent
-                : const Color(0xFF4A90E2),
+            color: isRead ? Colors.transparent : Colors.indigo.shade400,
             width: 1.5,
           ),
         ),
